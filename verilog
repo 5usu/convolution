@@ -1,0 +1,88 @@
+//Moudule 
+
+module top_module ( input a, input b, output out );
+	mod_a inst0(a, b, out)
+endmodule
+
+//Connecting port by position 
+
+module top_module ( 
+    input a, 
+    input b, 
+    input c,
+    input d,
+    output out1,
+    output out2
+);
+	mod_a inst0(out1, out2, a, b, c, d);
+
+endmodule
+
+//Connecting ports by name 
+
+moudule top_module(
+	input a; 
+	input b; 
+	inpit c; 
+	input d 
+	output out1; 
+	output out2; 
+); 
+
+	mod_a inst0( .in1(a), .in2(b), .in3(c), .in4(d), out1(oout1), out2(out2))
+
+endmodule
+
+//Three modules 
+
+module top_module(input clk, input d, output q) 
+
+	wire q1,q2; 
+
+	my_diff inst0(clk, d, q); 
+	my_diff inst1(clk, q1, q2); 
+	my_diff inst2(clk, q2, q); 
+
+endmodule 
+
+//Modules and vectors 
+
+ module top_module( 
+ 	input clk 
+	input [7:0] d,
+	input [1:0] sel, 
+	output [7:0] q
+); 
+
+	wire [7:0] q1,q2; 
+	my_diff8 inst0(clk, d ,q1); 
+	my_diff8 inst0(clk, q1 ,q2); 
+	my_diff8 inst0(clk, q2 ,q3); 
+
+	always @(*) begin
+	  case (sel) 
+		2'b00 : q = d; 
+		2'b01 : q = q1; 
+		2'b10 : q = q2; 
+		2'b11 : q = q3; 
+	  endcase 
+	end 
+
+endmodule
+
+//Adder1 
+
+module top_module( 
+	input [31:0] a, 
+	input [31,0] b, 
+	output [31,0] sum
+); 
+	wire [15:0] sum0, sum1; 
+	wire cout0; 
+
+	add16 inst0(a[15:0], b[15:0], 1'b0, sum0, cout0); 
+	add16 inst1(a[31:16], b[31:16], cout0, sum1);
+
+	assign sum = (sum1, sum2);
+
+endmodule 

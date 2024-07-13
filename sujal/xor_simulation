@@ -1,0 +1,55 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x5c8363b45bc0 .scope module, "testbench" "testbench" 2 4;
+ .timescale -9 -12;
+v0x5c8363b57170_0 .var "a", 0 0;
+v0x5c8363b57240_0 .var "b", 0 0;
+v0x5c8363b57310_0 .net "y", 0 0, L_0x5c8363b57410;  1 drivers
+S_0x5c8363b45d50 .scope module, "uut" "xor_gate" 2 10, 3 2 0, S_0x5c8363b45bc0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "y";
+L_0x5c8363b57410 .functor XOR 1, v0x5c8363b57170_0, v0x5c8363b57240_0, C4<0>, C4<0>;
+v0x5c8363b0eba0_0 .net "a", 0 0, v0x5c8363b57170_0;  1 drivers
+v0x5c8363b56f90_0 .net "b", 0 0, v0x5c8363b57240_0;  1 drivers
+v0x5c8363b57050_0 .net "y", 0 0, L_0x5c8363b57410;  alias, 1 drivers
+    .scope S_0x5c8363b45bc0;
+T_0 ;
+    %vpi_call 2 18 "$monitor", "a = %b, b = %b, y = %b", v0x5c8363b57170_0, v0x5c8363b57240_0, v0x5c8363b57310_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5c8363b57170_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5c8363b57240_0, 0, 1;
+    %delay 10000, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5c8363b57170_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5c8363b57240_0, 0, 1;
+    %delay 10000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5c8363b57170_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5c8363b57240_0, 0, 1;
+    %delay 10000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5c8363b57170_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5c8363b57240_0, 0, 1;
+    %delay 10000, 0;
+    %vpi_call 2 37 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "xor_testbench.v";
+    "xor_gate.v";

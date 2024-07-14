@@ -1,5 +1,4 @@
-// testbench.v
-`timescale 1ns / 1ps
+timescale 1ns / 1ps
 
 module testbench;
     reg a;
@@ -13,7 +12,11 @@ module testbench;
         .y(y)
     );
 
+    // Create a VCD file for waveform dumping
     initial begin
+        $dumpfile("xor_test.vcd");
+        $dumpvars(0, testbench);
+
         // Apply test vectors
         $monitor("a = %b, b = %b, y = %b", a, b, y);
 

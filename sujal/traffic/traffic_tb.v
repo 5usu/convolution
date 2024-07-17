@@ -3,7 +3,7 @@
 module traffic_tb; 
     reg clk; 
     reg reset; 
-    wire [1:0] light; 
+    reg [1:0] light; 
 
 traffic_control uut (
     .clk(clk),

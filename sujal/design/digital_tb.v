@@ -8,7 +8,7 @@ module digital_tb;
 
     wire z;
 
-    wire [8*5:1] state_string;
+//    wire [8*5:1] state_string;
 
     digital_design uut (
         .clk(clk), 
@@ -17,7 +17,7 @@ module digital_tb;
         .z(z)
     );
 
-    initial begin
+/*    initial begin
         clk = 0;
         forever #5 clk = ~clk;  // 100MHz clock
     end
@@ -27,7 +27,7 @@ module digital_tb;
         $dumpvars(0, digital_tb);
     end
 
-    function [8*5:1] state_to_string;
+/*    function [8*5:1] state_to_string;
         input [1:0] state;
         begin
             case(state)
@@ -39,7 +39,7 @@ module digital_tb;
         end
     endfunction
 
-    assign state_string = state_to_string(uut.current_state);
+    assign state_string = state_to_string(uut.current_state); */
 
     initial begin
         reset = 1;
@@ -67,9 +67,14 @@ module digital_tb;
         #100 $finish;
     end
 
-    initial begin
+/*   initial begin
         $monitor("Time=%0t, Reset=%b, X=%b, Z=%b, State=%s", 
                  $time, reset, x, z, state_string);
+    end */
+
+    initial begin 
+        $dumpfile("digital_design.vcd");
+        $dumpvars(0, digital_tb);
     end
 
 endmodule
